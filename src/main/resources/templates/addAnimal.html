@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ-добавить животное</title>
+    <link rel="stylesheet" th:href="@{/styles/addAnimal.css}" href="../static/styles/addAnimal.css"/>
+</head>
+<body>
+<h2>ДОБАВИТЬ ЖИВОТНОЕ</h2>
+<form th:action="@{/addAnimal}" method="post" enctype="multipart/form-data">
+    <input type="text" id="name" name="name" placeholder="Кличка">
+    <input type="text" id="type" name="type" placeholder="Вид животного">
+    <input type="number" id="age" name="age" placeholder="Возраст">
+    <div class="choose-sex">
+        <h3>Пол животного</h3>
+        <input type="radio" id="male" name="sex" value="M" checked>
+        <label for="male">Мужской</label><br>
+        <input type="radio" id="female" name="sex" value="F">
+        <label for="female">Женский</label><br>
+    </div>
+    <input type="text" id="description" name="description" placeholder="Описание">
+    <label for="photo" class="bold-label">Фотография животного</label>
+    <input type="file" id="photo" name="photo" accept="image/*" >
+    <button type="submit">Добавить</button>
+    <div th:if="${Error}" class="error">
+        <p th:text="${Error}" class="error-message"></p>
+    </div>
+    <div th:if="${success}" class="success">
+        <p th:text="${success}" class="success-message"></p>
+    </div>
+</form>
+</body>
+</html>

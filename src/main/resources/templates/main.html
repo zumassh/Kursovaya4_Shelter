@@ -1,0 +1,17 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" href="../static/styles/main.css"/>
+</head>
+<body>
+    <table>
+        <tr th:each="animal : ${animals}">
+            <th><div th:text="${animal.photo}"></div></th>
+            <th><div th:text="${animal.name}"></div></th>
+            <th><div th:text="${animal.age}"></div></th>
+        </tr>
+    </table>
+</body>
+</html>
