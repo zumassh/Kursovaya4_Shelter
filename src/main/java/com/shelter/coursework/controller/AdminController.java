@@ -64,7 +64,12 @@ public class AdminController {
         animal.setDescription(animalDTO.getDescription());
         animal.setPhoto(image);
 
-        animalService.createAnimal(animal);
+        try{
+            animalService.createAnimal(animal);
+        }
+        catch (Exception e){
+            return new ModelAndView("addAnimal", "Error", "Не все поля заполнены верно. Повторите попытку.");
+        }
         return new ModelAndView("addAnimal", "success", "Животное успешно добавлено.");
     }
 }

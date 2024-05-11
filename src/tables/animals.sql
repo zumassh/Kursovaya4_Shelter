@@ -1,9 +1,9 @@
 CREATE TABLE Animals(
     id bigint PRIMARY KEY AUTO_INCREMENT,
     user_id bigint,
-    type VARCHAR(10),
+    type VARCHAR(10) NOT NULL,
     name VARCHAR(255) NOT NULL,
-    age TINYINT,
+    age TINYINT NOT NULL,
     sex CHAR(1),
     photo_id BIGINT,
     description VARCHAR(500),

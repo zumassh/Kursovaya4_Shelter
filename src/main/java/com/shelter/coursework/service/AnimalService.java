@@ -19,28 +19,21 @@ public class AnimalService {
         return animal.getType() + " добавлена.";
     }
 
-    public AnimalDTO getAnimal(long id){
-        Optional<Animal> opt = animalRepo.findById(id);
-        if (opt.isPresent()){
-            return new AnimalDTO(opt.get());
-        }
-        else{
-            return null;
-        }
+    public Animal getAnimal(long id){
+       Optional<Animal> animal = animalRepo.findById(id);
+       if (animal.isPresent())
+           return animal.get();
+       return null;
     }
 
-    public List<AnimalDTO> getAllAnimals(){
+    public List<Animal> getAllAnimals(){
         List<Animal> animals = (List<Animal>) animalRepo.findAll();
-        if (animals != null){
-            return animals.stream().map(AnimalDTO::new).collect(Collectors.toList());
-        }
-        else{
-            return null;
-        }
+        return animals;
     }
 
     public String deleteAnimal(long id){
         animalRepo.deleteById(id);
         return "Животное с id " + id + " удалено.";
     }
+
 }

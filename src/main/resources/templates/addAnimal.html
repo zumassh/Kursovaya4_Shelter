@@ -8,9 +8,9 @@
 <body>
 <h2>ДОБАВИТЬ ЖИВОТНОЕ</h2>
 <form th:action="@{/addAnimal}" method="post" enctype="multipart/form-data">
-    <input type="text" id="name" name="name" placeholder="Кличка">
-    <input type="text" id="type" name="type" placeholder="Вид животного">
-    <input type="number" id="age" name="age" placeholder="Возраст">
+    <input type="text" id="name" name="name" placeholder="Кличка" required>
+    <input type="text" id="type" name="type" placeholder="Вид животного" required>
+    <input type="number" id="age" name="age" placeholder="Возраст" required>
     <div class="choose-sex">
         <h3>Пол животного</h3>
         <input type="radio" id="male" name="sex" value="M" checked>

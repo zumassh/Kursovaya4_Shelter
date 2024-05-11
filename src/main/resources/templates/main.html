@@ -4,14 +4,62 @@
     <meta charset="UTF-8">
     <title>Главная</title>
     <link rel="stylesheet" th:href="@{/styles/main.css}" href="../static/styles/main.css"/>
+    <script th:src="@{/js/main.js}" type="text/javascript"></script>
 </head>
 <body>
-    <table>
-        <tr th:each="animal : ${animals}">
-            <th><div th:text="${animal.photo}"></div></th>
-            <th><div th:text="${animal.name}"></div></th>
-            <th><div th:text="${animal.age}"></div></th>
-        </tr>
-    </table>
+    <div class = "cards">
+        <div th:each="animal : ${animals}" th:if="${animal.getUser() == null}" th:class="${'gender-' + animal.getSex()}">
+
+            <div class="overlay" onclick="closePopup(this)"></div>
+            <div class="popup">
+                <form id="bookAnimal" class="bookAnimal" method="post" th:action="@{/main}">
+                    <div class="popup-content">
+                        <img th:src="@{'/animal/image/' + ${animal.getId()}}" height="200px" width="200px">
+                        <div class="item">
+                            <p class="param">Имя: </p>
+                            <p th:text="${animal.getName()}"></p>
+                        </div>
+                        <div class="item">
+                            <p class="param">Возраст: </p>
+                            <p th:text="${animal.getAge()}"></p>
+                        </div>
+                        <div class="item">
+                            <p class="param">Пол: </p>
+                            <p th:text="${animal.getSex()}"></p>
+                        </div>
+                        <div class="item">
+                            <p class="param">Вид: </p>
+                            <p th:text="${animal.getType()}"></p>
+                        </div>
+                        <div class="description">
+                            <p class="param">Описание:</p>
+                            <p th:text="${animal.getDescription()}"></p>
+                        </div>
+                        <input type="hidden" id="animalId" name="animalId" th:value="${animal.getId()}">
+                        <button type="submit" class="takeAnimal">Забронировать</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class = "card" onclick="openPopup(this)">
+                <img th:src="@{'/animal/image/' + ${animal.getId()}}" height="200px" width="200px">
+                <div class="item">
+                    <p class="param">Имя: </p>
+                    <p th:text="${animal.getName()}"></p>
+                </div>
+                <div class="item">
+                    <p class="param">Возраст: </p>
+                    <p th:text="${animal.getAge()}"></p>
+                </div>
+                <div class="item">
+                    <p class="param">Вид: </p>
+                    <p th:text="${animal.getType()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${Error}" class="error">
+        <p th:text="${Error}" class="error-message"></p>
+    </div>
 </body>
 </html>
