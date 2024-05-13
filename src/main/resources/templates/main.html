@@ -10,7 +10,6 @@
     <header>
         <a th:if="${user.getRole()} == 'adm'" class="addAnimal" href="/addAnimal">Добавить животное</a>
         <h1>Приют для животных</h1>
-        <a class="lk">Личный кабинет</a>
     </header>
     <div class = "cards">
         <div th:each="animal : ${animals}" th:if="${animal.getUser() == null}" th:class="${'gender-' + animal.getSex()}">
