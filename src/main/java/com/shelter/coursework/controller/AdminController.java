@@ -36,7 +36,7 @@ public class AdminController {
         User currentUser = userService.getUserByLogin(login);
         System.out.println(currentUser.getRole());
         if (!currentUser.getRole().equals("adm")){
-            return new ModelAndView("main");
+            return new ModelAndView("redirect:/main");
         }
         return new ModelAndView("addAnimal");
     }

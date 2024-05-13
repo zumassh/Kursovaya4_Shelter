@@ -2,6 +2,34 @@ body{
     background-color: #e4dcdc;
 }
 
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    background-color: #DCCCC4;
+    margin-bottom: 2%;
+}
+
+header a{
+    text-decoration: none;
+    height: 10vh;
+    background-color: #CC9474;
+    font-size: larger;
+    color: black;
+    display: flex;
+    align-items: center;
+    padding: 0 5px 0 5px;
+}
+
+header a:hover{
+    background-color: #7e5d46;
+}
+
 .cards{
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* Пять столбцов с равной шириной */

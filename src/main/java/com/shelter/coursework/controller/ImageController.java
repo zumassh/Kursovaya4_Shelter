@@ -20,7 +20,7 @@ public class ImageController {
     public ResponseEntity<byte[]> getImage(@PathVariable Long animalId) {
         byte[] imageBytes = animalService.getAnimal(animalId).getPhoto().getData();
         return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_JPEG) // замените на соответствующий MediaType
+                .contentType(MediaType.IMAGE_JPEG)
                 .body(imageBytes);
     }
 }

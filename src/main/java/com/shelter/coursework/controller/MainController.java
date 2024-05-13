@@ -26,17 +26,20 @@ public class MainController {
     @GetMapping("/main")
     public ModelAndView getMainPage(){
         List<Animal> animalList = animalService.getAllAnimals();
-        return new ModelAndView("main", "animals", animalList);
+        ModelAndView modelAndView = new ModelAndView("main", "animals", animalList);
+        String login = SecurityUtil.getCurrentUsername();
+        User user = userService.getUserByLogin(login);
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
     @PostMapping("/main")
-    public String bookAnimal(@RequestParam(name = "animalId") Long animalId){
+    public ModelAndView bookAnimal(@RequestParam(name = "animalId") Long animalId){
         Animal animal = animalService.getAnimal(animalId);
         String login = SecurityUtil.getCurrentUsername();
         User user = userService.getUserByLogin(login);
         animal.setUser(user);
         animalService.createAnimal(animal);
-        return "main";
-
+        return getMainPage();
     }
 }
