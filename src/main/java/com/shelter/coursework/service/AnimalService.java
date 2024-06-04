@@ -1,6 +1,7 @@
 package com.shelter.coursework.service;
 import com.shelter.coursework.DTO.AnimalDTO;
 import com.shelter.coursework.entity.Animal;
+import com.shelter.coursework.entity.User;
 import com.shelter.coursework.repository.AnimalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,6 +35,14 @@ public class AnimalService {
     public String deleteAnimal(long id){
         animalRepo.deleteById(id);
         return "Животное с id " + id + " удалено.";
+    }
+
+    public List<Animal> getAnimalsByUser(User user){
+        return (List<Animal>) animalRepo.findAnimalsByUser(user);
+    }
+
+    public void updateAnimal(Animal animal){
+        animalRepo.save(animal);
     }
 
 }

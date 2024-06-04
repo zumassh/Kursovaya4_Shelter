@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Админ-добавить животное</title>
     <link rel="stylesheet" th:href="@{/styles/addAnimal.css}" href="../static/styles/addAnimal.css"/>
+    <script th:src="@{/js/main.js}" type="text/javascript"></script>
 </head>
 <body>
 <h2>ДОБАВИТЬ ЖИВОТНОЕ</h2>
@@ -22,6 +23,7 @@
     <label for="photo" class="bold-label">Фотография животного</label>
     <input type="file" id="photo" name="photo" accept="image/*" >
     <button type="submit">Добавить</button>
+    <button onclick="back()" type = "button" >Назад</button>
     <div th:if="${Error}" class="error">
         <p th:text="${Error}" class="error-message"></p>
     </div>

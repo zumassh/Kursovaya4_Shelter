@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" href="../static/styles/main.css"/>
+    <script th:src="@{/js/main.js}" type="text/javascript"></script>
+</head>
+<body>
+<header>
+    <a th:if="${user.getRole()} == 'usr'" class="addAnimal" href="/addAnimal">Главная страница</a>
+    <h1>Ваши животные</h1>
+    <a href="logout">Выйти из учётной записи</a>
+</header>
+
+<div class = "cards">
+    <div th:each="animal : ${animals}" th:class="${'gender-' + animal.getSex()}">
+        <div class="overlay" onclick="closePopup(this)"></div>
+        <div class="popup">
+            <form id="bookAnimal" class="bookAnimal" method="post" th:action="@{/lk}">
+                <div class="popup-content">
+                    <img th:src="@{'/animal/image/' + ${animal.getId()}}" height="200px" width="200px">
+                    <div class="item">
+                        <p class="param">Имя: </p>
+                        <p th:text="${animal.getName()}"></p>
+                    </div>
+                    <div class="item">
+                        <p class="param">Возраст: </p>
+                        <p th:text="${animal.getAge()}"></p>
+                    </div>
+                    <div class="item">
+                        <p class="param">Пол: </p>
+                        <p th:text="${animal.getSex()}"></p>
+                    </div>
+                    <div class="item">
+                        <p class="param">Вид: </p>
+                        <p th:text="${animal.getType()}"></p>
+                    </div>
+                    <div class="description">
+                        <p class="param">Описание:</p>
+                        <p th:text="${animal.getDescription()}"></p>
+                    </div>
+                    <input type="hidden" id="animalId" name="animalId" th:value="${animal.getId()}">
+                    <button type="submit" class="takeAnimal">Отменить бронь</button>
+                </div>
+            </form>
+        </div>
+
+        <div class = "card" onclick="openPopup(this)">
+            <img th:src="@{'/animal/image/' + ${animal.getId()}}" height="200px" width="200px">
+            <div class="item">
+                <p class="param">Имя: </p>
+                <p th:text="${animal.getName()}"></p>
+            </div>
+            <div class="item">
+                <p class="param">Возраст: </p>
+                <p th:text="${animal.getAge()}"></p>
+            </div>
+            <div class="item">
+                <p class="param">Вид: </p>
+                <p th:text="${animal.getType()}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:if="${Error}" class="error">
+    <p th:text="${Error}" class="error-message"></p>
+</div>
+</body>
+</html>

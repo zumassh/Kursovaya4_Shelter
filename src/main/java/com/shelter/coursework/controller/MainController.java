@@ -42,4 +42,22 @@ public class MainController {
         animalService.createAnimal(animal);
         return getMainPage();
     }
+
+    @GetMapping("/lk")
+    public ModelAndView getLkPage(){
+        String login = SecurityUtil.getCurrentUsername();
+        User user = userService.getUserByLogin(login);
+        List<Animal> animalList = animalService.getAnimalsByUser(user);
+        ModelAndView modelAndView = new ModelAndView("lk", "animals", animalList);
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
+    @PostMapping("/lk")
+    public ModelAndView unBookAnimal(@RequestParam(name = "animalId") Long animalId){
+        Animal animal = animalService.getAnimal(animalId);
+        animal.setUser(null);
+        animalService.updateAnimal(animal);
+        return new ModelAndView("redirect:/lk");
+    }
 }

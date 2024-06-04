@@ -9,7 +9,9 @@
 <body>
     <header>
         <a th:if="${user.getRole()} == 'adm'" class="addAnimal" href="/addAnimal">Добавить животное</a>
+        <a th:if="${user.getRole()} == 'usr'" class="addAnimal" href="/lk">Личный кабинет</a>
         <h1>Приют для животных</h1>
+        <a href="logout">Выйти из учётной записи</a>
     </header>
     <div class = "cards">
         <div th:each="animal : ${animals}" th:if="${animal.getUser() == null}" th:class="${'gender-' + animal.getSex()}">

@@ -38,3 +38,7 @@ function sendPostRequest() {
     // Отправка запроса
     xhr.send(data);
 }
+
+function back(){
+    window.history.back();
+}

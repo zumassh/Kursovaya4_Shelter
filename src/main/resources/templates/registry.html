@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" th:href="@{/styles/registration.css}" href="../static/styles/registration.css"/>
 </head>
 <body>
@@ -15,6 +15,7 @@
     <div th:if="${Error}" class="error">
         <p th:text="${Error}" class="error-message"></p>
     </div>
+    <p>Уже есть учётная запись? <a href="login.html">Авторизация</a></p>
 </form>
 </body>
 </html>
